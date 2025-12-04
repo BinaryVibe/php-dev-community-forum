@@ -3,7 +3,7 @@ session_start();
 require "../config/config.php";
 
 $post_id = (int) $_GET['id'];
-$user_id = $_SESSION['user_id'] ?? 0; 
+$user_id = $_SESSION['user_id'] ?? 0;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
     if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['btn_comment'])) {
     if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-         echo "<script>alert('You must be logged in to comment.');</script>";
+        echo "<script>alert('You must be logged in to comment.');</script>";
     } else {
         $comment_body = trim($_POST['comment_body']);
         if (!empty($comment_body)) {
@@ -90,7 +90,8 @@ $comments_result = $conn->query($comments_query);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
@@ -100,7 +101,8 @@ $comments_result = $conn->query($comments_query);
     <header class="main-header">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#collapsible-bar">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
+                    data-bs-target="#collapsible-bar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a href="index.php" class="navbar-brand">
@@ -192,7 +194,8 @@ $comments_result = $conn->query($comments_query);
                             <form method="POST" class="d-inline">
                                 <input type="hidden" name="action" value="downvote">
                                 <button type="submit" class="btn btn-outline-danger btn-sm">
-                                    <i class="bi bi-arrow-down-circle-fill"></i> Downvote (<?php echo $post['downvotes']; ?>)
+                                    <i class="bi bi-arrow-down-circle-fill"></i> Downvote
+                                    (<?php echo $post['downvotes']; ?>)
                                 </button>
                             </form>
                         </div>
@@ -206,7 +209,7 @@ $comments_result = $conn->query($comments_query);
                 </div>
                 <div class="mt-5" id="comments-section">
                     <h3>Comments</h3>
-                    
+
                     <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -215,7 +218,8 @@ $comments_result = $conn->query($comments_query);
                                         <label class="form-label">Add a comment</label>
                                         <textarea name="comment_body" class="form-control" rows="3" required></textarea>
                                     </div>
-                                    <button type="submit" name="btn_comment" class="btn btn-primary btn-sm">Post Comment</button>
+                                    <button type="submit" name="btn_comment" class="btn btn-primary btn-sm">Post
+                                        Comment</button>
                                 </form>
                             </div>
                         </div>
@@ -226,11 +230,12 @@ $comments_result = $conn->query($comments_query);
                     <?php endif; ?>
 
                     <?php if ($comments_result->num_rows > 0): ?>
-                        <?php while($comment = $comments_result->fetch_assoc()): ?>
+                        <?php while ($comment = $comments_result->fetch_assoc()): ?>
                             <div class="card mb-2">
                                 <div class="card-body p-3">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <strong class="text-primary">@<?php echo htmlspecialchars($comment['username']); ?></strong>
+                                        <strong
+                                            class="text-primary">@<?php echo htmlspecialchars($comment['username']); ?></strong>
                                         <small class="text-muted"><?php echo $comment['created_at']; ?></small>
                                     </div>
                                     <p class="mb-0"><?php echo nl2br(htmlspecialchars($comment['body'])); ?></p>
@@ -241,11 +246,13 @@ $comments_result = $conn->query($comments_query);
                         <p class="text-muted">No comments yet.</p>
                     <?php endif; ?>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
