@@ -138,7 +138,7 @@ if (!$result) {
                         </div>
 
                         <p class="card-text">
-                            <?php`
+                            <?php
                             $preview = substr($post['body'], 0, 200);
                             echo nl2br(htmlspecialchars($preview));
                             if (strlen($post['body']) > 200)
@@ -146,7 +146,7 @@ if (!$result) {
                             ?>
                         </p>
 
-                        <a href="view_post.php?id=<?php echo $post['post_id']; ?>" class="btn btn-primary">
+                        <a href="show_post.php?id=<?php echo $post['post_id']; ?>" class="btn btn-primary">
                             Read More
                         </a>
 
