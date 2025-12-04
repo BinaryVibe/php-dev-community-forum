@@ -1,6 +1,32 @@
 <?php
 session_start();
+require "../config/config.php";
+// Get posts from last 7 days
+$query = "
+    SELECT 
+        p.post_id,
+        p.title,
+        p.body,
+        p.views,
+        p.is_published,
+        p.created_at,
+        p.updated_at,
+        p.upvotes,
+        p.downvotes,
+        u.username,
+        u.first_name,
+        u.last_name
+    FROM posts p
+    INNER JOIN users u ON p.user_id = u.user_id
+    WHERE p.created_at >= (NOW() - INTERVAL 7 DAY)
+    ORDER BY p.created_at DESC
+";
 
+$result = $conn->query($query);
+
+if (!$result) {
+    die("Query failed: " . $conn->error);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,31 +109,52 @@ session_start();
         </nav>
     </header>
 
-    <!-- Homepage -->
-    <div class="container">
-        <h1>Recent Posts</h1>
+    <div class="container mt-5">
+        <h2 class="mb-4">Recent Posts (Last 7 Days)</h2>
 
-        <!-- Posts -->
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title"><a href="php_backend/post"
-                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
-                        First Post: How
-                        to structure a project?</a></h4>
-                <p class="card-text">Posted by <a href="#">alex_dev</a> 2 hours ago</p>
-            </div>
-        </div>
+        <?php if ($result->num_rows === 0): ?>
+            <div class="alert alert-warning">No posts in the last week.</div>
+        <?php else: ?>
 
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title"><a href="#"
-                        class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
-                        CSS Grid vs.
-                        Flexbox: Which to use?</a></h4>
-                <p class="card-text">Posted by <a href="#">css_guru</a> 5 hours ago</p>
-            </div>
-        </div>
+            <?php while ($post = $result->fetch_assoc()): ?>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
 
+                        <h4 class="card-title">
+                            <a href="view_post.php?id=<?php echo $post['post_id']; ?>">
+                                <?php echo htmlspecialchars($post['title']); ?>
+                            </a>
+                        </h4>
+
+                        <div class="text-muted mb-2">
+                            <strong>By:</strong>
+                            <?php echo htmlspecialchars($post['first_name'] . " " . $post['last_name']); ?>
+                            |
+                            <strong>Published:</strong>
+                            <?php echo $post['created_at']; ?>
+                            |
+                            <strong>Views:</strong>
+                            <?php echo $post['views']; ?>
+                        </div>
+
+                        <p class="card-text">
+                            <?php`
+                            $preview = substr($post['body'], 0, 200);
+                            echo nl2br(htmlspecialchars($preview));
+                            if (strlen($post['body']) > 200)
+                                echo "...";
+                            ?>
+                        </p>
+
+                        <a href="view_post.php?id=<?php echo $post['post_id']; ?>" class="btn btn-primary">
+                            Read More
+                        </a>
+
+                    </div>
+                </div>
+            <?php endwhile; ?>
+
+        <?php endif; ?>
     </div>
 
 
