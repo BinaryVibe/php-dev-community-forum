@@ -1,14 +1,9 @@
 <?php
 session_start();
 require "../config/config.php";
-// Validate ID
-if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {
-    die("Invalid post ID.");
-}
 
 $post_id = (int) $_GET['id'];
 
-// Fetch post with author's details
 $query = "
     SELECT 
         p.post_id,
@@ -88,39 +83,39 @@ $stmt->close();
 
                 </div>
 
-                <?php
-                if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == true) {
-                    
-                    echo "
-                        <div class='d-flex flex-nowrap column-gap-2'>
-                            <a href='new_post.php' class='nav-item btn btn-primary' role='button'>
-                                <i class='bi bi-plus-lg'></i>
-                            </a>
-                            
-
-                            <div class='dropdown'>
-                                <button class='btn btn-secondary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                                    <i class='bi bi-person-circle'></i>
-                                </button>
-                                <ul class='dropdown-menu dropdown-menu-end'>
-                                    <li><a class='dropdown-item' href='#'>Action</a></li>
-                                    <li><a class='dropdown-item' href='#'>Another action</a></li>
-                                    <li><a class='dropdown-item' href='#'>Something else here</a></li>
-                                </ul>
-                            </div>
+                <?php if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == true): ?>
 
 
+                    <div class='d-flex flex-nowrap column-gap-2'>
+                        <a href='new_post.php' class='nav-item btn btn-primary' role='button'>
+                            <i class='bi bi-plus-lg'></i>
+                        </a>
+
+
+                        <div class='dropdown'>
+                            <button class='btn btn-secondary dropdown-toggle' type='button' data-bs-toggle='dropdown'
+                                aria-expanded='false'>
+                                <i class='bi bi-person-circle'></i>
+                            </button>
+                            <ul class='dropdown-menu dropdown-menu-end'>
+                                <li><a class='dropdown-item' href='#'>Action</a></li>
+                                <li><a class='dropdown-item' href='#'>Another action</a></li>
+                                <li><a class='dropdown-item' href='#'>Something else here</a></li>
+                            </ul>
                         </div>
-                    ";
-                } else {
-                    echo "
+
+
+                    </div>
+
+                <?php else: ?>
+
                     <div class='auth-btns d-flex flex-nowrap column-gap-2'>
                         <a href='login.html' class='nav-item btn btn-primary' role='button'>Login</a>
                         <a href='signup.html' class='nav-item btn btn-outline-primary' role='button'>Sign Up</a>
                     </div>
-                    ";
-                }
-                ?>
+
+
+                <?php endif; ?>
             </div>
         </nav>
     </header>
