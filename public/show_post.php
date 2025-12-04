@@ -80,7 +80,7 @@ $stmt->close();
                 <div class="collapse navbar-collapse" id="collapsible-bar">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link" aria-current="page" href="index.html">Home</a>
                         </li>
                         <li class="nav-item"><a href="#" class="nav-link">Posts</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
