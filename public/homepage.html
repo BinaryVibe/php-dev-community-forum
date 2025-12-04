@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Community Forum</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-box">Dev</div>
+                <span>Community</span>
+            </a>
+
+            <div class="nav-search">
+                <input type="text" placeholder="Search...">
+            </div>
+
+            <div class="nav-auth">
+                <a href="pages/login.html" class="nav-button-secondary">Log in</a>
+                <a href="pages/signup.html" class="nav-button-primary">Create account</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container layout-grid">
+        
+        <aside class="left-sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active">🏠 Home</a></li>
+                <li><a href="#">📜 Reading List</a></li>
+                <li><a href="#">🎙️ Podcasts</a></li>
+                <li><a href="#">📽️ Videos</a></li>
+                <li><a href="#">🏷️ Tags</a></li>
+                <li><a href="#">💡 FAQ</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-feed">
+            
+            <div class="feed-header">
+                <a href="#" class="feed-filter active">Relevant</a>
+                <a href="#" class="feed-filter">Latest</a>
+                <a href="#" class="feed-filter">Top</a>
+            </div>
+
+            <article class="post-card">
+                <div class="post-meta">
+                    <img src="https://ui-avatars.com/api/?name=Sarah+Doe&background=random" alt="User" class="user-avatar">
+                    <div class="meta-info">
+                        <span class="author-name">Sarah Doe</span>
+                        <span class="post-date">Oct 24</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h2><a href="#">The Ultimate Guide to Learning Laravel in 2025</a></h2>
+                    <div class="post-tags">
+                        <span class="tag">#laravel</span>
+                        <span class="tag">#php</span>
+                        <span class="tag">#beginners</span>
+                    </div>
+                    <div class="post-actions">
+                        <span class="reaction">❤️ 45 reactions</span>
+                        <span class="reaction">💬 12 comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <div class="post-meta">
+                    <img src="https://ui-avatars.com/api/?name=Alex+Smith&background=0D8ABC&color=fff" alt="User" class="user-avatar">
+                    <div class="meta-info">
+                        <span class="author-name">Alex Smith</span>
+                        <span class="post-date">Oct 23</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h2><a href="#">Why I switched from React to Vue (and back again)</a></h2>
+                    <div class="post-tags">
+                        <span class="tag">#javascript</span>
+                        <span class="tag">#react</span>
+                        <span class="tag">#vue</span>
+                    </div>
+                    <div class="post-actions">
+                        <span class="reaction">❤️ 128 reactions</span>
+                        <span class="reaction">💬 45 comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <div class="post-meta">
+                    <img src="https://ui-avatars.com/api/?name=John+Dev&background=random" alt="User" class="user-avatar">
+                    <div class="meta-info">
+                        <span class="author-name">John Dev</span>
+                        <span class="post-date">Oct 22</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h2><a href="#">Understanding CSS Grid: A Visual Guide</a></h2>
+                    <div class="post-tags">
+                        <span class="tag">#css</span>
+                        <span class="tag">#webdev</span>
+                    </div>
+                    <div class="post-actions">
+                        <span class="reaction">❤️ 89 reactions</span>
+                        <span class="reaction">💬 20 comments</span>
+                    </div>
+                </div>
+            </article>
+
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="sidebar-box">
+                <h3>#discuss</h3>
+                <ul class="listing-list">
+                    <li><a href="#">What was your first programming language?</a></li>
+                    <li><a href="#">Dark mode vs Light mode?</a></li>
+                    <li><a href="#">Tabs or Spaces?</a></li>
+                    <li><a href="#">Best VS Code extensions?</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-box">
+                <h3>#watercooler</h3>
+                <ul class="listing-list">
+                    <li><a href="#">Show off your desk setup!</a></li>
+                    <li><a href="#">Music for coding</a></li>
+                </ul>
+            </div>
+        </aside>
+
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
