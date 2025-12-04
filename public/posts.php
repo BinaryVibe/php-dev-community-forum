@@ -43,17 +43,7 @@ $result = $conn->query($query);
     <?php include "nav.php"; ?>
 
     <div class="container">
-        <div class="row mb-4 align-items-center">
-            <div class="col">
-                <h1 class="h2">Recent Discussions</h1>
-                <p class="text-muted">Join the conversation with other developers.</p>
-            </div>
-            <div class="col-auto">
-                <?php if (isset($_SESSION["logged_in"])): ?>
-                    <a href="new_post.php" class="btn btn-success">Create Thread</a>
-                <?php endif; ?>
-            </div>
-        </div>
+
 
         <div class="row">
             <?php if ($result->num_rows > 0): ?>
@@ -105,6 +95,8 @@ $result = $conn->query($query);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         xintegrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+    <script src="js/change_active_navbar_link.js"></script>
+
 </body>
 
 </html>
