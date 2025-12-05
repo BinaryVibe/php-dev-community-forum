@@ -33,7 +33,7 @@
 
             <!-- Right Side (Form) -->
             <div class="col text-center">
-                <form class="ps-5 pe-5" action="register.php" method="POST">
+                <form class="ps-5 pe-5" id="signup-form" action="register.php" method="POST">
                     <div class="mb-5">
                         <img src="images/account.svg" alt="Account Icon" width="40" height="40">
                         <h1>Create Your Account</h1>
@@ -86,6 +86,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+    <script>
+        function validateForm() {
+            if (validatePassword()) {
+                return true;
+            }
+            return false;
+        }
+
+        function validatePassword() {
+            userPass = document.getElementById("password").value;
+            confirmPass = document.getElementById("confirm-password").value;
+            if (userPass != confirmPass) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        }
+
+        document.getElementById("signup-form").addEventListener("submit", (event) => {
+            if (!validateForm()) {
+                event.preventDefault();
+                return;
+            }
+        });
+    </script>
 </body>
 
 </html>
