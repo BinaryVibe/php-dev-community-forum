@@ -62,7 +62,7 @@ if (!$result) {
                     <div class="card-body">
 
                         <h4 class="card-title">
-                            <a href="view_post.php?id=<?php echo $post['post_id']; ?>">
+                            <a href="show_post.php?id=<?php echo $post['post_id']; ?>">
                                 <?php echo htmlspecialchars($post['title']); ?>
                             </a>
                         </h4>
@@ -87,9 +87,6 @@ if (!$result) {
                             ?>
                         </p>
 
-                        <a href="show_post.php?id=<?php echo $post['post_id']; ?>" class="btn btn-primary">
-                            Read More
-                        </a>
 
                     </div>
                 </div>
