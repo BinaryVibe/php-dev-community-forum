@@ -67,7 +67,7 @@ if ($result->num_rows === 0) {
     die("Post not found.");
 }
 
-$post = $result->fetch_assoc();
+$post_details = $result->fetch_assoc();
 $stmt->close();
 
 $conn->query("UPDATE posts SET views = views + 1 WHERE post_id = $post_id");
@@ -86,7 +86,7 @@ $comments_result = $conn->query($comments_query);
 
 <head>
     <meta charset="UTF-8">
-    <title><?php echo htmlspecialchars($post['title']); ?></title>
+    <title><?php echo $post_details['title']; ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -108,22 +108,22 @@ $comments_result = $conn->query($comments_query);
                     <div class="card-body">
 
                         <h1 class="mb-3">
-                            <?php echo htmlspecialchars($post['title']); ?>
+                            <?php echo $post_details['title']; ?>
                         </h1>
 
                         <div class="text-muted mb-3">
                             <strong>By:</strong>
-                            <?php echo htmlspecialchars($post['first_name'] . " " . $post['last_name']); ?>
+                            <?php echo $post_details['first_name'] . " " . $post_details['last_name']; ?>
                             |
                             <strong>Username:</strong>
-                            <?php echo htmlspecialchars($post['username']); ?>
+                            <?php echo $post_details['username']; ?>
                             |
                             <strong>Views:</strong>
-                            <?php echo $post['views']; ?>
+                            <?php echo $post_details['views']; ?>
                         </div>
 
                         <div class="mb-4">
-                            <p><?php echo nl2br(htmlspecialchars($post['body'])); ?></p>
+                            <p><?php echo nl2br($post_details['body']); ?></p>
                         </div>
 
                         <hr>
@@ -132,22 +132,22 @@ $comments_result = $conn->query($comments_query);
                             <form method="POST" class="d-inline">
                                 <input type="hidden" name="action" value="upvote">
                                 <button type="submit" class="btn btn-outline-success btn-sm">
-                                    <i class="bi bi-arrow-up-circle-fill"></i> Upvote (<?php echo $post['upvotes']; ?>)
+                                    <i class="bi bi-arrow-up-circle-fill"></i> Upvote (<?php echo $post_details['upvotes']; ?>)
                                 </button>
                             </form>
 
                             <form method="POST" class="d-inline">
                                 <input type="hidden" name="action" value="downvote">
-                                <button type="submit" class="btn btn-outline-danger btn-sm">
+                                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="">
                                     <i class="bi bi-arrow-down-circle-fill"></i> Downvote
-                                    (<?php echo $post['downvotes']; ?>)
+                                    (<?php echo $post_details['downvotes']; ?>)
                                 </button>
                             </form>
                         </div>
 
                         <div class="text-muted small">
-                            Created at: <?php echo $post['created_at']; ?><br>
-                            Updated at: <?php echo $post['updated_at']; ?>
+                            Created at: <?php echo $post_details['created_at']; ?><br>
+                            Updated at: <?php echo $post_details['updated_at']; ?>
                         </div>
 
                     </div>
@@ -180,10 +180,10 @@ $comments_result = $conn->query($comments_query);
                                 <div class="card-body p-3">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <strong
-                                            class="text-primary">@<?php echo htmlspecialchars($comment['username']); ?></strong>
+                                            class="text-primary">@<?php echo $comment['username']; ?></strong>
                                         <small class="text-muted"><?php echo $comment['created_at']; ?></small>
                                     </div>
-                                    <p class="mb-0"><?php echo nl2br(htmlspecialchars($comment['body'])); ?></p>
+                                    <p class="mb-0"><?php echo nl2br($comment['body']); ?></p>
                                 </div>
                             </div>
                         <?php endwhile; ?>
@@ -198,6 +198,8 @@ $comments_result = $conn->query($comments_query);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+    
 </body>
 
 </html>
